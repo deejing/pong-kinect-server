@@ -1,0 +1,48 @@
+﻿<Window x:Class="DepthViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="520" Width="788" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded_1" Closing="Window_Closing_1" MouseDown="Window_MouseDown_1" FontFamily="Segoe UI Light" Icon="images/icon.png">
+    <Border BorderBrush="#FF81486C" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="788" Height="520" Margin="0,0,0,-77" >
+        <Grid HorizontalAlignment="Left" Height="383" VerticalAlignment="Top" Width="211" Background="#FF6B3F83" Margin="568,49,0,0">
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Einstellungen" VerticalAlignment="Top" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+            <Slider x:Name="sliderMin" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.333,0.409" Width="164" Background="{x:Null}" Foreground="White" Maximum="900" Minimum="300" Value="600" Interval="1" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="sliderMax" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.333,0.409" Width="164" Background="{x:Null}" Foreground="White" Maximum="6000" Minimum="900" Value="900" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="sliderMinBlob" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.333,0.409" Width="164" Background="{x:Null}" Foreground="White" Maximum="50" Minimum="1" Value="25" IsSnapToTickEnabled="True" Interval="1">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="1"/>
+                        <SkewTransform AngleY="0" AngleX="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+            <Slider x:Name="sliderMaxBlob" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.333,0.409" Width="164" Background="{x:Null}" Foreground="White" Maximum="500" Minimum="1" Value="250" Interval="1" IsSnapToTickEnabled="True"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="383" Margin="-559,0,0,0" VerticalAlignment="Top" Width="553"/>
+            <Button Content="x" Margin="0,-38,-1,0" VerticalAlignment="Top" Click="closeBtn" HorizontalAlignment="Right" Width="15" Cursor="Hand"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,42,0,0" TextWrapping="Wrap" Text="Min Distanz" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Max Distanz" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,142,0,0" TextWrapping="Wrap" Text="Min Blob" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,192,0,0" TextWrapping="Wrap" Text="Max Blob" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,242,0,0" TextWrapping="Wrap" Text="Info" VerticalAlignment="Top" Foreground="White"/>
+            <Image x:Name="outImage" HorizontalAlignment="Left" Height="383" Margin="-559,0,0,0" VerticalAlignment="Top" Width="553"/>
+            <Image x:Name="colorImage" HorizontalAlignment="Left" Height="105" Margin="-197,10,0,0" VerticalAlignment="Top" Width="166"/>
+            <Button x:Name="socketBnt" Content="Start Socket" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Width="75" Click="socketBnt_Click" FontFamily="Segoe UI" Cursor="Hand"/>
+            <TextBox x:Name="inputIp" HorizontalAlignment="Left" Height="23" Margin="10,323,0,0" TextWrapping="Wrap" Text="127.0.0.1:9512" VerticalAlignment="Top" Width="164" FontFamily="Segoe UI"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,301,0,0" TextWrapping="Wrap" Text="Server IP" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,263,0,0" TextWrapping="Wrap" Text="Blobs" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock x:Name="txtBlobs" HorizontalAlignment="Left" Margin="44,263,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,42,37,0" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderMin}" VerticalAlignment="Top" RenderTransformOrigin="-1.625,-0.406" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,92,37,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-1.625,-0.406" Foreground="White" Text="{Binding Value, ElementName=sliderMax}"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,142,37,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-1.625,-0.406" Foreground="White" Text="{Binding Value, ElementName=sliderMinBlob}"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,192,37,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-1.625,-0.406" Foreground="White" Text="{Binding Value, ElementName=sliderMaxBlob}"/>
+            <RichTextBox x:Name="inputInfo" HorizontalScrollBarVisibility="Hidden"  Height="74" Margin="-559,388,-1,-79" VerticalAlignment="Top" SelectionBrush="{x:Null}" Foreground="#FFACACAC" BorderBrush="{x:Null}" IsReadOnly="True" Background="{x:Null}">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="Hallo Sie!"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Grid>
+    </Border>
+</Window>
